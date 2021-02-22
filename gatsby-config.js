@@ -19,13 +19,32 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `events`,
+        path: `${__dirname}/events`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `data`,
         path: `${__dirname}/data`,
       },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-mdx`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -44,4 +63,7 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
+  mapping: {
+    "Mdx.frontmatter.guests": `GuestsYaml`,
+  },
 }
